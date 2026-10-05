@@ -1,62 +1,78 @@
-# 🛒 Milestone Project 01: Retail Store Operations & Analytics
+# 🛒 Retail Operations SQL Analytics
+
+> An end-to-end MySQL analytics project for analyzing retail customers, products, stores, sales, inventory, employees, discounts, profitability, and order fulfillment.
+
+![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-Analytics-336791?style=for-the-badge)
+![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?style=for-the-badge&logo=github&logoColor=white)
+![Status](https://img.shields.io/badge/Project-Completed-success?style=for-the-badge)
+
+---
 
 ## 📌 Project Overview
 
-A comprehensive, end-to-end **MySQL relational database project** built
-around a realistic retail store operations and analytics system.
+**Retail Operations SQL Analytics** is an end-to-end MySQL project built around a realistic retail business environment.
 
-This project applies SQL concepts including:
+The project combines relational database design, data cleaning, SQL analysis, and business problem solving to answer practical questions about:
 
--   Relational database design
--   Primary and Foreign Keys
--   `NOT NULL`, `UNIQUE`, `CHECK`, and `DEFAULT` constraints
--   Data insertion and transactional records
--   Data cleaning and string manipulation
--   Date calculations
--   Aggregate functions
--   `GROUP BY` and `HAVING`
--   `INNER JOIN` and `LEFT JOIN`
--   Anti-JOIN logic
--   `SELF JOIN`
--   `CROSS JOIN`
--   Business-oriented analytical queries
+- Customer behavior
+- Product performance
+- Store performance
+- Sales and revenue
+- Discounts
+- Profitability
+- Inventory
+- Employee hierarchy
+- Order fulfillment
 
-------------------------------------------------------------------------
+The project progresses from SQL fundamentals to business-oriented analytical queries.
 
-## 🗄️ Database Structure
+---
 
-The project contains seven main tables:
+## 🎯 Business Problem
 
-  -----------------------------------------------------------------------
-  Table                               Description
-  ----------------------------------- -----------------------------------
-  `stores`                            Retail store branches and locations
+A retail company needs to understand how its customers, products, stores, employees, and orders are performing.
 
-  `employees`                         Employees and manager hierarchy
+This project answers questions such as:
 
-  `categories`                        Product categories
+- Which customers are inactive?
+- Which customers place repeat orders?
+- Which products generate the highest net revenue?
+- Which categories generate the highest estimated profit?
+- Which stores generate the highest revenue?
+- How much revenue is affected by discounts?
+- Which products have never appeared in an order?
+- How quickly are orders fulfilled?
+- What is the average order value?
+- How are employees connected to their managers?
 
-  `products`                          Product catalog, pricing, cost, and
-                                      inventory
+The objective is to transform operational retail data into structured business analysis using SQL.
 
-  `customers`                         Customer profiles and contact
-                                      information
+---
 
-  `orders`                            Customer orders and order status
+# 🗄️ Database Architecture
 
-  `order_items`                       Products, quantities, prices, and
-                                      discounts within orders
-  -----------------------------------------------------------------------
+The database contains **7 main tables**:
+
+| Table | Purpose |
+|---|---|
+| `stores` | Retail store branches and locations |
+| `employees` | Employees, salaries, stores, and manager hierarchy |
+| `categories` | Product categories |
+| `products` | Product catalog, pricing, cost, and inventory |
+| `customers` | Customer profiles and contact information |
+| `orders` | Customer orders and fulfillment information |
+| `order_items` | Products, quantities, sale prices, and discounts |
 
 ### 🔗 Main Relationships
 
-``` text
+```text
 stores
 ├── employees
 └── orders
 
 employees
-└── manager_id → employees
+└── manager_id → employees.emp_id
 
 categories
 └── products
@@ -71,217 +87,376 @@ products
 └── order_items
 ```
 
-------------------------------------------------------------------------
+The employee table contains a self-referencing `manager_id` relationship, while orders connect customers and stores and order items connect orders with products.
 
-## 📚 Project Levels
+---
 
-### Level 1 → Level 8
+# 📊 Business Analysis
 
-**37 SQL Tasks**
+## 👥 Customer Analytics
 
-Stored in:
+The project analyzes customer information and purchasing behavior.
 
-``` text
-analytical_queries.sql
+Key analysis includes:
+
+- Customer name standardization
+- Email normalization
+- Phone number normalization
+- Customers with no orders
+- Repeat customers
+- Customer order frequency
+
+---
+
+## 🛍️ Product & Category Analytics
+
+Product and category performance is analyzed using sales, pricing, cost, discount, and inventory information.
+
+Key metrics include:
+
+- Units sold
+- Gross sales
+- Discounts
+- Net revenue
+- Estimated profit
+- Product revenue
+- Products with no sales
+- Inventory availability
+
+---
+
+## 🏪 Store Performance
+
+Store-level analysis compares the performance of retail branches.
+
+Analysis includes:
+
+- Number of orders
+- Units sold
+- Gross sales
+- Discounts
+- Net revenue
+- Revenue thresholds
+- Active-store performance
+
+---
+
+## 🚚 Order Fulfillment
+
+The project evaluates order fulfillment performance using order and shipping dates.
+
+Analysis includes:
+
+- Order date
+- Shipped date
+- Fulfillment days
+- Fast delivery classification
+- Standard/delayed delivery classification
+- Orders that have not yet shipped
+
+---
+
+## 👔 Employee Hierarchy
+
+Employee reporting structures are analyzed using a self-referencing relationship.
+
+The analysis identifies:
+
+- Employees
+- Managers
+- Reporting relationships
+- Employee-store relationships
+
+---
+
+# 🔍 Core Business Questions
+
+The project contains **7 core business questions**.
+
+| Question | Business Analysis |
+|---|---|
+| Q1 | Standardize customer names, emails, and phone numbers |
+| Q2 | Map employees to managers and stores |
+| Q3 | Identify customers who have never placed an order |
+| Q4 | Calculate fulfillment time and classify delivery performance |
+| Q5 | Analyze category revenue, discounts, net revenue, and profitability |
+| Q6 | Identify active stores meeting the revenue threshold |
+| Q7 | Generate active-store and in-stock-product combinations |
+
+---
+
+# 🧠 Advanced Business Challenges
+
+The project also contains **10 advanced challenges**:
+
+1. Find the customer with the most orders.
+2. Find the product with the highest net revenue.
+3. Find the category with the highest estimated profit.
+4. Find the store with the highest revenue.
+5. Identify customers with more than one order.
+6. Find employees reporting directly to a specific manager.
+7. Identify products that have never appeared in an order.
+8. Calculate average order value.
+9. Calculate total discount percentage.
+10. Create a complete store-level sales performance report.
+
+These challenges use aggregation, joins, `GROUP BY`, `HAVING`, ordering, filtering, and business calculations.
+
+---
+
+# 🧮 Key Business Metrics
+
+### Gross Sales
+
+```text
+Quantity × Unit Sale Price
 ```
 
-Coverage:
+### Net Revenue
 
--   Level 1 --- Task 01--07
--   Level 2 --- Task 08--11
--   Level 3 --- Task 12--15
--   Level 4 --- Task 16--18
--   Level 5 --- Task 19--24
--   Level 6 --- Task 25--29
--   Level 7 --- Task 30--32
--   Level 8 --- Task 33--37
-
-### Level 9
-
-**Business Questions Q1--Q7**
-
-Stored in:
-
-``` text
-Business_Questions.sql
+```text
+Gross Sales − Discounts
 ```
 
-Topics include:
+### Estimated Profit
 
--   Customer data cleaning
--   Employee hierarchy
--   Inactive customers
--   Order fulfillment analysis
--   Category revenue and profit
--   Store performance
--   Product-store analysis
+```text
+Net Revenue − Product Cost
+```
 
-### Level 10
+### Average Order Value
 
-**Business Challenges 01--10**
+```text
+Total Net Revenue ÷ Number of Orders
+```
 
-Topics include:
+### Discount Percentage
 
--   Top customers
--   Top products
--   Category profitability
--   Store revenue
--   Repeat customers
--   Employee-manager relationships
--   Products with no sales
--   Average order value
--   Discount analysis
--   Store-level sales performance
+```text
+Total Discounts ÷ Gross Sales × 100
+```
 
-------------------------------------------------------------------------
+---
 
-## 🎯 Key Analytical Problems Solved
+# 🛠️ SQL Techniques Demonstrated
 
-### 1. Employee Hierarchy
+## SQL Fundamentals
 
-Used `SELF JOIN` to analyze employee-manager relationships and reporting
-structures.
+- `SELECT`
+- `WHERE`
+- `ORDER BY`
+- Aliases
+- Filtering
+- Sorting
 
-### 2. Customer Analysis
+## Data Cleaning
 
-Identified customers with no orders using `LEFT JOIN` and Anti-JOIN
-logic.
+- `UPPER()`
+- `LOWER()`
+- `REPLACE()`
+- String standardization
 
-### 3. Product & Category Analysis
+## Aggregation
 
-Analyzed product sales, category revenue, discounts, costs, and
-estimated profit.
+- `COUNT()`
+- `SUM()`
+- `AVG()`
+- `MIN()`
+- `MAX()`
+- `GROUP BY`
+- `HAVING`
 
-### 4. Store Performance
+## Joins
 
-Calculated store-level orders, units sold, gross sales, discounts, and
-net revenue.
+- `INNER JOIN`
+- `LEFT JOIN`
+- Anti-JOIN
+- `SELF JOIN`
+- `CROSS JOIN`
 
-### 5. Order Fulfillment
+## Business Logic
 
-Calculated shipping duration and categorized fulfillment performance
-using date arithmetic and `CASE`.
+- `CASE`
+- `COALESCE`
+- `DATEDIFF()`
+- Revenue calculations
+- Profit calculations
+- KPI calculations
 
-### 6. Inventory Analysis
+## Database Design
 
-Identified products with zero stock and generated product-store
-combinations using `CROSS JOIN`.
+- Primary Keys
+- Foreign Keys
+- `NOT NULL`
+- `UNIQUE`
+- `CHECK`
+- `DEFAULT`
+- Composite Primary Keys
+- Self-referencing relationships
 
-### 7. Business Analysis
+---
 
-Used aggregation, filtering, grouping, joins, and analytical SQL logic
-to answer practical retail business questions.
+# 📚 Project Scope
 
-------------------------------------------------------------------------
+```text
+37 SQL Analytical Tasks
+        +
+7 Business Questions
+        +
+10 Advanced Business Challenges
+```
 
-## 🛠️ Tools & Technologies
+### Analytical progression
 
--   **Database:** MySQL
--   **Language:** SQL
--   **Version Control:** Git & GitHub
--   **SQL Environment:** MySQL-compatible SQL client
+```text
+SQL Fundamentals
+       ↓
+Data Cleaning
+       ↓
+Joins
+       ↓
+Aggregations
+       ↓
+Date & Conditional Analysis
+       ↓
+Advanced SQL
+       ↓
+Business Questions
+       ↓
+Business Analysis
+```
 
-------------------------------------------------------------------------
+---
 
-## 📂 Project Files
+# 📂 Repository Structure
 
-``` text
-Milestone_Project_01_Retail_Operations/
+```text
+Retail-Operations-SQL-Analytics/
 │
 ├── README.md
-├── Task.md
-├── Retail_Analytics_Table_Creations.sql
-├── analytical_queries.sql
-└── Business_Questions.sql
+│
+├── database/
+│   └── Retail_Analytics_Table_Creations.sql
+│
+└── sql/
+    ├── analytical_queries.sql
+    └── Business_Questions.sql
 ```
 
-### File Purpose
+> The SQL files can be organized into `database/` and `sql/` folders as the next repository cleanup step.
 
-  ----------------------------------------------------------------------------
-  File                                     Purpose
-  ---------------------------------------- -----------------------------------
-  `README.md`                              Project documentation
+---
 
-  `Task.md`                                Project requirements and tasks
+# 🚀 How to Run the Project
 
-  `Retail_Analytics_Table_Creations.sql`   Database tables, relationships, and
-                                           constraints
+## Step 1 — Create the Database
 
-  `analytical_queries.sql`                 Level 1--8, Task 01--37
-
-  `Business_Questions.sql`                 Level 9--10 business questions and
-                                           challenges
-  ----------------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
-## 🚀 Execution Order
-
-Run the SQL files in the following order.
-
-### Step 1 --- Create the Database Structure
+Open **MySQL Workbench** or another MySQL-compatible SQL environment.
 
 Run:
 
-``` text
+```sql
+CREATE DATABASE IF NOT EXISTS retail_analytics;
+USE retail_analytics;
+```
+
+The database setup script then creates the seven required tables, constraints, primary keys, foreign keys, and relationships.
+
+## Step 2 — Run the Database Setup Script
+
+Run:
+
+```text
 Retail_Analytics_Table_Creations.sql
 ```
 
-This creates the required tables, relationships, and constraints.
+This creates the database structure and inserts the project data.
 
-### Step 2 --- Run Analytical Tasks
+## Step 3 — Run the Analytical Queries
 
 Run:
 
-``` text
+```text
 analytical_queries.sql
 ```
 
-This contains:
+This contains the 37 SQL tasks covering fundamentals through advanced analytical queries.
 
-**Level 1--8 → Task 01--37**
-
-### Step 3 --- Run Business Questions
+## Step 4 — Run the Business Questions
 
 Run:
 
-``` text
+```text
 Business_Questions.sql
 ```
 
-This contains:
+This contains the 7 core business questions and 10 advanced challenges.
 
-**Level 9 → Q1--Q7**
+---
 
-**Level 10 → Challenge 01--10**
+# 💡 Business Value
 
-------------------------------------------------------------------------
+This project demonstrates how SQL can be used to support real business analysis rather than only retrieve records.
 
-## ✅ Skills Demonstrated
+The analysis can help a retail business understand:
 
-This project demonstrates practical SQL skills in:
+- Revenue performance
+- Customer engagement
+- Product performance
+- Store performance
+- Profitability
+- Discount impact
+- Inventory gaps
+- Fulfillment efficiency
+- Employee reporting structures
 
--   Database and relational schema design
--   Constraints and relationships
--   Data cleaning
--   String manipulation
--   Date arithmetic
--   Aggregate functions
--   Grouping and filtering
--   Relational joins
--   Anti-JOIN logic
--   SELF JOIN
--   CROSS JOIN
--   Sales analysis
--   Customer analysis
--   Employee hierarchy analysis
--   Store performance analysis
--   Inventory analysis
--   Revenue and profitability analysis
--   Business-oriented SQL problem solving
+The main objective is to convert **raw operational data into structured business insights**.
 
-------------------------------------------------------------------------
+---
 
-## 📌 Project Status
+# 🎓 Skills Demonstrated
 
-**Milestone Project 01 --- Completed ✅**
+### Technical Skills
+
+- MySQL
+- SQL
+- Relational Database Design
+- Data Cleaning
+- Data Analysis
+- Git
+- GitHub
+
+### Analytical Skills
+
+- Business problem solving
+- KPI analysis
+- Revenue analysis
+- Customer analysis
+- Product analysis
+- Store performance analysis
+- Profitability analysis
+- Operational analysis
+
+---
+
+# 📌 Project Status
+
+**Completed ✅**
+
+This project demonstrates a progression from SQL fundamentals to advanced, business-oriented retail analytics.
+
+---
+
+# 👨‍💻 Author
+
+## Chandan B
+
+**Aspiring Data Analyst**
+
+**Skills:** SQL • Power BI • Excel • Python • Data Analytics
+
+GitHub: [@chandanB47](https://github.com/chandanB47)
+
+---
+
+⭐ If you find this project useful, consider giving the repository a star.
