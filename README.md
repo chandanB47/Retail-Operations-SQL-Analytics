@@ -453,6 +453,9 @@ This project demonstrates a progression from SQL fundamentals to advanced, busin
 
 **Aspiring Data Analyst**
 
+
+<!-- Pull Shark practice change -->
+
 **Skills:** SQL • Power BI • Excel • Python • Data Analytics
 
 GitHub: [@chandanB47](https://github.com/chandanB47)
