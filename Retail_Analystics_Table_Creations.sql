@@ -329,7 +329,7 @@ SELECT
     customer_id,
     UPPER(full_name) AS standardized_name,
     LOWER(email) AS cleaned_email,
-    REPLACE(REPLACE(REPLACE(phone, '+91 ', ''), '+91-', ''), '-', '') AS normalized_phone,
+    REPLACE(REPLACE(REPLACE(phone, '+91 ', ''), '+91-', ''), '-', '') AS Normalized_Phone,
     city
 FROM customers;
 
