@@ -121,7 +121,7 @@ Key metrics include:
 - Estimated profit
 - Product revenue
 - Products with no sales
-- Inventory availability
+- Inventory availabilitys
 
 ---
 
